@@ -1,0 +1,11 @@
+Package: seqQTL
+Title: Package for preprocessing sequencing based traits for QTL analysis
+Version: 0.1
+Authors@R: person("Matthias", "Heinig", email = "first.last@helmholtz-muenchen.de", role = c("aut", "cre"))
+Description: Package for preprocessing sequencing based traits such as ChIP-seq
+  of histone mofifications for QTL analysis
+Depends: GenomicRanges, Rsamtools, ggplot2, reshape, grid,
+    R (>= 3.2.1)
+License: LGPL
+LazyData: true
+RoxygenNote: 5.0.0
