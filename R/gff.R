@@ -406,3 +406,24 @@ get.htseq.count.matrix <- function(dir, pattern) {
   expr = as.matrix(expr[,-match("ID", colnames(expr))])
   return(expr)
 }
+
+
+#' Normalize to reads per kilobase per million sequences
+#'
+#' @param annotation GRanges object with exons that have a "gene_id" field in
+#'        the meta data
+#' @param counts read count matrix per gene. The rownames have to be the same as
+#'        those used in the gene_id field.
+#' @return matrix of RPKM values
+#' @export
+get.rpkm <- function(annotation, counts) {
+  bygene = split(annotation, values(annotation)[,"gene_id"])
+  len = sum(width(reduce(bygene)))
+  genes = intersect(names(bygene), rownames(counts))
+  counts = counts[genes,]
+  len = len[genes]
+  rpkm = counts / rep(total, each=nrow(counts)) / rep(len, ncol(counts)) * 1e9 
+  return(rpkm)
+}
+
+
