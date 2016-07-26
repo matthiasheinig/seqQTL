@@ -421,6 +421,7 @@ get.rpkm <- function(annotation, counts) {
   len = sum(width(reduce(bygene)))
   genes = intersect(names(bygene), rownames(counts))
   counts = counts[genes,]
+  total = colSums(counts)
   len = len[genes]
   rpkm = counts / rep(total, each=nrow(counts)) / rep(len, ncol(counts)) * 1e9 
   return(rpkm)
